@@ -37,12 +37,13 @@ set incsearch		" do incremental searching
 "设置非兼容模式
 set nocp
 
-"set encoding=utf-8
-""set encoding=gb2312
-set langmenu=zh_CN.gb2312
-language message zh_CN.gb2312
+" 设置编码格式utf8
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936
+set fileencoding=gb2312
+set termencoding=utf-8
 
-set fileencoding=gbk2312
+
 set ts=4
 set sw=4
 set smartindent
