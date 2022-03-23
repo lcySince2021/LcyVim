@@ -193,7 +193,7 @@ endif
 "花括号自动格式化，首行一个tab
 "autocmd FileType cpp,java inoremap { {<CR>}<ESC>kA<CR>
 
-set fenc=" "
+"set fenc=" "
 "显示匹配
 "set showmatch
 "括号匹配
