@@ -288,7 +288,7 @@ endfunc
 " Hello，我是PowerVim的作者，程序员Carl，欢迎关注我的微信公众号：代码随想录 
 
 " 使用的背景主题
-colorscheme Monokai_Gavin
+colorscheme monokai
 " 添加自动补全字典
 " au FileType php setlocal dict+=~/.vim/dictionary/php_keywords_list.txt
 " au FileType cpp setlocal dict+=~/.vim/dictionary/cpp_keywords_list.txt
