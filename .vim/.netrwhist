@@ -1,4 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/home/lcy/BaseCode'
-let g:netrw_dirhist_2='/home/lcy/BaseCode/include'
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/home/lcy/test'
