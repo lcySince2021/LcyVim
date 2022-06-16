@@ -1,8 +1,50 @@
-colorscheme monokai
-set nu
+" Hello，我是PowerVim的作者，程序员Carl，欢迎关注我的微信公众号：代码随想录 
+"
+" 定义快捷键的前缀，即<Leader>
+let mapleader=";"
+
+" pathogen plugin manager
+execute pathogen#infect()
+" syntax on
+filetype plugin indent on
+
+"高亮搜索关键词"
+let g:ackhighlight = 1
+"修改快速预览窗口高度为15
+let g:ack_qhandler = "botright copen 15"
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+"set autocmd
+set autoindent		" always set autoindenting on 自动缩进
+" indent C++ autoindent private public keyword 
+set cindent
+set cinoptions=g-1
+"if has("vms")
+"  set nobackup		" do not keep a backup file, use versions instead
+"else
+"  set backup		" keep a backup file
+"endif
+set nobackup        "I hate backup files.
+set number
+set history=50		" keep 50 lines of command line history
+set ruler		" show the cursor position all the time
+set showcmd		" display incomplete commands
+set incsearch		" do incremental searching
+"设置非兼容模式
+set nocp
+
+set encoding=utf-8
+" set encoding=gb2312
+" set langmenu=zh_CN.gb2312
+" language message zh_CN.gb2312
+
+set fileencoding=gbk2312
 set ts=4
 set sw=4
-<<<<<<< HEAD
 set smartindent
 set showmatch        " Show matching brackets.
 set guioptions-=T
@@ -155,10 +197,10 @@ set fenc=" "
 "显示匹配
 set showmatch
 "括号匹配
-" inoremap ( ()<ESC>i
-" inoremap [ []<ESC>i
-" inoremap ' ''<ESC>i
-" inoremap " ""<ESC>i
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap ' ''<ESC>i
+inoremap " ""<ESC>i
 set selectmode=mouse,key
 set selection=exclusive
 set mouse=n "可视模式下使用鼠标，set mouse=a这个命令导致在vim下复制粘贴不好用
@@ -199,7 +241,33 @@ autocmd filetype java nnoremap <F2> :w <bar> exec '!java -cp ./bin '.shellescape
 
 
 let g:tlist_markdown_settings = 'markdown;h:Headlins'
-
+"新建.c,.h,.sh,.Java文件，自动插入文件头
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.Java,*.go exec ":call SetTitle()"
+"""定义函数SetTitle，自动插入文件头
+func SetTitle()
+    "如果文件类型为.sh文件
+    if &filetype == 'sh'
+        call setline(1,"\#########################################################################")
+        call append(line("."),   "\# File Name:    ".expand("%"))
+        call append(line(".")+1, "\# Author:       程序员Carl")
+        call append(line(".")+2, "\# mail:         programmercarl@163.com")
+        call append(line(".")+3, "\# Created Time: ".strftime("%c"))
+        call append(line(".")+4, "\#########################################################################")
+        call append(line(".")+5, "\#!/bin/bash")
+        call append(line(".")+6, "")
+    else
+        call setline(1, "/* ************************************************************************")
+        call append(line("."),   "> File Name:     ".expand("%"))
+        call append(line(".")+1, "> Author:        程序员Carl")
+        call append(line(".")+2, "> 微信公众号:    代码随想录")
+        call append(line(".")+3, "> Created Time:  ".strftime("%c"))
+        call append(line(".")+4, "> Description:   ")
+        call append(line(".")+5, " ************************************************************************/")
+        call append(line(".")+6, "")
+    endif
+    "新建文件后，自动定位到文件末尾
+    autocmd BufNewFile * normal G
+endfunc
 
 
 " shortcut for markdown
@@ -247,7 +315,7 @@ endfunc
 " 使用的背景主题
 colorscheme monokai
 " 添加自动补全字典
-" au FileType php setlocal dict+=~/.vim/dictionary/php_keywords_list.txt
+au FileType php setlocal dict+=~/.vim/dictionary/php_keywords_list.txt
 au FileType cpp setlocal dict+=~/.vim/dictionary/cpp_keywords_list.txt
 au FileType java setlocal dict+=~/.vim/dictionary/java_keywords_list.txt
 " au FileType markdown setlocal dict+=~/.vim/dictionary/words.txt
@@ -368,7 +436,3 @@ function! GenMarkdownSectionNum()
   " echo lvl sect out
   echo out
 endfunc
-=======
-set cindent
-set mouse=a
->>>>>>> 0921949ce483e70b45586206345f6792c9c49fa9
